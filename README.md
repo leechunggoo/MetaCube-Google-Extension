@@ -1,4 +1,5 @@
 # MetaCube-Google-Extension
+
 ## manifest : google extension 의 모든 설정들을 입력하는 파일
 ## popup.html : 확장프로그램 실행시 보여질 popup.html
 ## assets/background.js: 어느 도메인에 접근하던지 실행될 js파일 특정도메인에 있는게아닌 chrome browser에 포함되어있다고 생각하면 된다.
