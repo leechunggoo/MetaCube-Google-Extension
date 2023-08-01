@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "metanode-crawling-extention", 
+  "description": "metanode-extention",
+  "version": "1.0.0",
+  "background": {
+    "service_worker": "assets/background.js"
+  },
+  "action": {
+    "default_title":"MetaCube-Crawling",
+    "default_icon": "meta-logo.png",
+    "default_popup":"popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/*"],
+      "matches":["*://*/*"]
+    },    {
+      
+      "resources": ["assets/*"],
+      "matches":["*://*/*"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "cookies",
+    "declarativeContent",
+    "storage"
+  ],
+  "host_permissions": ["*://*/*"]
+  
+}
