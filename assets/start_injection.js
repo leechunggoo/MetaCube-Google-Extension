@@ -11,7 +11,6 @@ crtagLeft.setAttribute('class', 'temp-left');
 $('body').prepend(crtagLeft)
 
 for (let i = 0; i < htmlBody.length; i++) {
-    console.log(i)
     crtagLeft.append(htmlBody[i])
 }
 
@@ -129,6 +128,7 @@ stepform.append(submitBtnStep01)
 
 const handler = (e) => {
     e.preventDefault();
+    extensiontest()
 
     console.log(e)
     const loginform = document.querySelector('#loginrequest')

@@ -21,6 +21,13 @@
       "matches":["*://*/*"]
     }
   ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["assets/content_script.js"],
+      "all_frames" : false
+    }
+  ],
   "permissions": [
     "tabs",
     "activeTab",
