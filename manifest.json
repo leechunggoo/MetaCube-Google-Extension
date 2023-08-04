@@ -21,6 +21,9 @@
       "matches":["*://*/*"]
     }
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
@@ -34,7 +37,11 @@
     "scripting",
     "cookies",
     "declarativeContent",
-    "storage"
+    "storage",
+    "webRequest",
+    "notifications",
+    "webNavigation",
+    "debugger"
   ],
   "host_permissions": ["*://*/*"]
   

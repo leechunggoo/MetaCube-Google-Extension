@@ -1,20 +1,19 @@
 chrome.runtime.onMessage.addListener(function (res, sender, callback) {
-  //console.log(res)
-  //console.log(chrome.tab)
-  //console.log(sender)
-  
-  
-  var idvalue;
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      idvalue = tabs[0].id;
-  });
-  console.log(chrome.tabs)
-  
-  
+    console.log('background.js')
+    console.log(res)
+    console.log(sender)
+    console.log(callback)
 
+    if(res==='tokenchk'){
+        tokenCHK()
+    }
 
-      // start_injection.js 최하단에서 호출
-      // jquery 로드
+    // chrome.runtime.sendMessage({token: res}, response => {
+    //     console.log("Received response from background page:", response);
+    // });
 
 });
-  
+
+function functiontest(){
+    return '1';
+}
