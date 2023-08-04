@@ -232,6 +232,19 @@ function crawlingpage(res){
     rows07.style.display='flex';
     rows07.style.width='100%'
     row01.append(rows07)
+
+    let crawlingNAMEspan = document.createElement('selectbox')
+    crawlingNAMEspan.innerText=''
+    crawlingNAMEspan.style.display='flex';
+    crawlingNAMEspan.style.width='100%'
+    rows07.append(crawlingNAMEspan)
+    
+    
+    
+    let rows08 = document.createElement('div')
+    rows08.style.display='flex';
+    rows08.style.width='100%'
+    row01.append(rows08)
     
     //명칭
     let crawlingNAMEinput = document.createElement('input')
@@ -250,7 +263,7 @@ function crawlingpage(res){
     crawlingNAMEinput.style.outline = 'none'
     crawlingNAMEinput.style.width = '90%'
     crawlingNAMEinput.setAttribute('placeHolder','ex) 타이틀')
-    rows07.append(crawlingNAMEinput)
+    rows08.append(crawlingNAMEinput)
 
     //명칭
     let crawlingMAPPINGNAMEinput = document.createElement('input')
@@ -269,9 +282,27 @@ function crawlingpage(res){
     crawlingMAPPINGNAMEinput.style.outline = 'none'
     crawlingMAPPINGNAMEinput.style.width = '90%'
     crawlingMAPPINGNAMEinput.setAttribute('placeHolder','ex) title')
-    rows07.append(crawlingMAPPINGNAMEinput)
+    rows08.append(crawlingMAPPINGNAMEinput)
 
+    //XPATH 경로찾기버튼
+    let rows09 = document.createElement('div')
+    rows09.style.width='100%'
+    row01.append(rows09)
 
+    let crawlingFINDbutton = document.createElement('button')
+    crawlingFINDbutton.setAttribute('id','crawlingFINDbutton')
+    crawlingFINDbutton.style.lineHeight = '1.4'
+    crawlingFINDbutton.style.fontWeight = '400'
+    crawlingFINDbutton.style.fontSize = '25px'
+    crawlingFINDbutton.innerHTML = '대 상 찾 기'
+    crawlingFINDbutton.style.border = '#240086 1px solid'
+    crawlingFINDbutton.style.color = '#FFF'
+    crawlingFINDbutton.style.backgroundColor = '#240086'
+    crawlingFINDbutton.style.width = '100%'
+    crawlingFINDbutton.style.height = '30px'
+    crawlingFINDbutton.style.marginTop = '25px'
+    crawlingFINDbutton.style.cursor = 'pointer'
+    rows09.append(crawlingFINDbutton)
     //mapping정보
 
     
