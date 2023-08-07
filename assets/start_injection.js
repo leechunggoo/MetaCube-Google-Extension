@@ -21,6 +21,7 @@ metaonbtn.style.padding='0';
 metaonbtn.style.lineHeight='1.2';
 metaonbtn.style.fontSize='medium';
 metaonbtn.style.cursor='pointer';
+metaonbtn.style.zIndex='9999';
 
 
 

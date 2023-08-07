@@ -30,7 +30,7 @@ function crawlingpage(res){
 
     //타이틀
     let crawlingtitleSpan = document.createElement('span')
-    crawlingtitleSpan.innerHTML = '타이틀'
+    crawlingtitleSpan.innerHTML = '도메인 타이틀'
     crawlingtitleSpan.style.color = '#fff'
     crawlingtitleSpan.style.fontSize = '12px'
     crawlingtitleSpan.style.marginBottom = '10px'
@@ -157,7 +157,7 @@ function crawlingpage(res){
     crawlingPLANinput.style.fontSize = '100%'
     crawlingPLANinput.style.outline = 'none'
     crawlingPLANinput.style.width = '80%'
-    crawlingPLANinput.style.placeHolder = 'ex.. 74'
+    crawlingPLANinput.style.placeHolder = '설명란을 입력하세요.'
     rows04.append(crawlingPLANinput)
     
     let rows05 = document.createElement('div')
@@ -191,7 +191,7 @@ function crawlingpage(res){
     crawlingCATEGORYinput.style.fontSize = '100%'
     crawlingCATEGORYinput.style.outline = 'none'
     crawlingCATEGORYinput.style.width = '80%'
-    crawlingCATEGORYinput.style.placeHolder = 'ex.. 74'
+    crawlingCATEGORYinput.style.placeHolder = '유형을 입력하세요.'
     rows05.append(crawlingCATEGORYinput)
 
     let rows06 = document.createElement('div')
@@ -200,16 +200,18 @@ function crawlingpage(res){
     row01.append(rows06)
 
     //XPATH정보
-    let crawlingXPATHspan = document.createElement('span')
-    crawlingXPATHspan.innerHTML = 'XPATH';
-    crawlingXPATHspan.style.color = '#fff'
-    crawlingXPATHspan.style.fontSize = '12px'
-    crawlingXPATHspan.style.marginBottom = '10px'
-    crawlingXPATHspan.style.fontWeight = '200'
-    crawlingXPATHspan.style.display = 'block'
-    crawlingXPATHspan.style.width ='20%'
-    crawlingXPATHspan.style.textAlign ='center'
-    rows06.append(crawlingXPATHspan)
+    let crawlingXPATHbutton = document.createElement('button')
+    crawlingXPATHbutton.setAttribute('type','button');
+    crawlingXPATHbutton.setAttribute('id','crawlingXPATHbutton');
+    crawlingXPATHbutton.innerHTML = 'XPATH'
+    crawlingXPATHbutton.style.color = '#fff'
+    crawlingXPATHbutton.style.fontSize = '12px'
+    crawlingXPATHbutton.style.marginBottom = '10px'
+    crawlingXPATHbutton.style.fontWeight = '200'
+    crawlingXPATHbutton.style.display = 'block'
+    crawlingXPATHbutton.style.width ='20%'
+    crawlingXPATHbutton.style.textAlign ='center'
+    rows06.append(crawlingXPATHbutton)
     let crawlingXPATHinput = document.createElement('input')
     crawlingXPATHinput.setAttribute('id','crawlingXPATHinput')
     crawlingXPATHinput.style.padding = '0 7px'
@@ -262,7 +264,7 @@ function crawlingpage(res){
     crawlingNAMEinput.style.fontSize = '70%'
     crawlingNAMEinput.style.outline = 'none'
     crawlingNAMEinput.style.width = '90%'
-    crawlingNAMEinput.setAttribute('placeHolder','ex) 타이틀')
+    crawlingNAMEinput.setAttribute('placeHolder','ex) 제목 or 내용')
     rows08.append(crawlingNAMEinput)
 
     //명칭
@@ -281,10 +283,10 @@ function crawlingpage(res){
     crawlingMAPPINGNAMEinput.style.fontSize = '70%'
     crawlingMAPPINGNAMEinput.style.outline = 'none'
     crawlingMAPPINGNAMEinput.style.width = '90%'
-    crawlingMAPPINGNAMEinput.setAttribute('placeHolder','ex) title')
+    crawlingMAPPINGNAMEinput.setAttribute('placeHolder','ex) title or content')
     rows08.append(crawlingMAPPINGNAMEinput)
 
-    //XPATH 경로찾기버튼
+    //XPATH 경로 저장요청
     let rows09 = document.createElement('div')
     rows09.style.width='100%'
     row01.append(rows09)
@@ -294,7 +296,7 @@ function crawlingpage(res){
     crawlingFINDbutton.style.lineHeight = '1.4'
     crawlingFINDbutton.style.fontWeight = '400'
     crawlingFINDbutton.style.fontSize = '25px'
-    crawlingFINDbutton.innerHTML = '대 상 찾 기'
+    crawlingFINDbutton.innerHTML = '보내기'
     crawlingFINDbutton.style.border = '#240086 1px solid'
     crawlingFINDbutton.style.color = '#FFF'
     crawlingFINDbutton.style.backgroundColor = '#240086'
@@ -312,15 +314,116 @@ function crawlingpage(res){
     //URL
     let URL = document.location.href
     crawlingURLinput.value=URL
-    //수집대상 : 마우스우클릭시 입력됨
 
-    //설명 : 직접입력
+    
+    //마우스 우클릭시 방지
+    document.oncontextmenu = (e) =>{
+        return false;
+    }
 
-    //카테고리 : 직접입력
+    //클릭방지
+    document.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+    
 
-    //XPATH정보 : 마우스우클릭시 입력
+    let leftcrtag = document.querySelector('.temp-left')
+    let clickFlag = false;
+    let targetBackgroundColor;
+
+    leftcrtag.addEventListener('mouseover',(e)=>{
+    
+        
+        let tempXpath = getElementTarget(e.target) //ex)../html/body/crtag[1]/div[2]/div[6]
+        //ex) ..<span style="color: rgb(255, 255, 255); "> 수집대상</span>
+        
+        //확장프로그램 영역 밖에서만 event 넣기
+        if(tempXpath.toString().indexOf('crtag[1]') > 0){
+            
+            let element = document.evaluate(tempXpath, document,null,
+                  XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+            // console.log(element)
+            // console.log(tempXpath)
+
+            targetBackgroundColor = element.style.backgroundColor; //기존의 backgroundcolor;
+            
+            //mouseover 영역의 backcolor 변경
+            getFocusElement(element);
+            
+                //backcolor 초기화
+                element.addEventListener('mouseout',(e)=>{
+                    console.log(element)
+                    element.style.backgroundColor = targetBackgroundColor;
+                })
+                
+                //마우스 우클릭시
+                element.addEventListener('mousedown',(e)=>{
+                    
+                    e.preventDefault()
+                    e.stopPropagation()
+                    if(e.button == 2){
+                        let Originalcolor = e.target.backgroundColor
+                        document.querySelector('#crawlingXPATHinput').value = getElementTarget(e.target);
+                        getFocusElement(e.target)
+                        
+                    }
+                
+                })
+            
+
+
+        }
+
+    })
+
 
 }
 
 
+//수집대상 xpath경로 추출
+function getElementTarget(element){
+    var paths = [];
+
+    var paths = [];  // Use nodeName (instead of localName)
+    for (; element && element.nodeType == Node.ELEMENT_NODE;
+           element = element.parentNode) {
+
+        var index = 0;
+        var hasFollowingSiblings = false;
+
+        for (var sibling = element.previousSibling; sibling;
+             sibling = sibling.previousSibling) {
+            // Ignore document type declaration.
+            if (sibling.nodeType == Node.DOCUMENT_TYPE_NODE)
+                continue;
+            if (sibling.nodeName == element.nodeName)
+                ++index;
+        }
+        for (var sibling = element.nextSibling;
+             sibling && !hasFollowingSiblings;
+             sibling = sibling.nextSibling) {
+            if (sibling.nodeName == element.nodeName)
+                hasFollowingSiblings = true;
+        }
+        var tagName = (element.prefix ? element.prefix + ":" : "")
+            + element.localName;
+        var pathIndex = (index || hasFollowingSiblings ? "["
+            + (index + 1) + "]" : "");
+        paths.splice(0, 0, tagName + pathIndex);
+    }
+    return paths.length ? "/" + paths.join("/") : null;
+
+}
+
+//우클릭 해당 태그 backcolor 변경
+function getFocusElement(element){
+    try {
+        element.style.backgroundColor = '#a1e058';
+
+    } catch (e) {
+        console.log("배경색이 없습니다.");
+    }
+
+}
 
