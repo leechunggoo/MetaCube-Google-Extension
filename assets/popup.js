@@ -7,7 +7,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     })
   });
 
-
 /**
 * chrome.tabs.query
 *
@@ -25,6 +24,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   })
 });
 
+console.log('언제오냐')
 
 //window.close();
 

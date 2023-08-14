@@ -41,7 +41,8 @@
     "webRequest",
     "notifications",
     "webNavigation",
-    "debugger"
+    "debugger",
+    "cookies"
   ],
   "host_permissions": ["*://*/*"]
   

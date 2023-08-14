@@ -1,19 +1,18 @@
-chrome.runtime.onMessage.addListener(function (res, sender, callback) {
-    console.log('background.js')
-    console.log(res)
-    console.log(sender)
-    console.log(callback)
+let casdasd;
+let i = 1;
 
-    if(res==='tokenchk'){
-        tokenCHK()
-    }
 
-    // chrome.runtime.sendMessage({token: res}, response => {
-    //     console.log("Received response from background page:", response);
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    // Handle the message.
+    console.log('와쓰')
+    i++
+        console.log(i)
+        
+    
+
+    // sendResponse({
+    //   success: true,
+    //   message: "Hello, world!"
     // });
 
 });
-
-function functiontest(){
-    return '1';
-}

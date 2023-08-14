@@ -54,7 +54,9 @@ const loginForm = (e) => {
     $('.temp-left').css('height', '100%')
     $('.temp-left').css('z-index', '1')
 
-    $('.temp-right').css('background-color', '#4b5978')
+    $('.temp-right').css('border-color','#6b7280')
+    $('.temp-right').css('background-color', '#E7E9EB')
+    $('.temp-right').css('border', '1px')
     $('.temp-right').css('width', '370px')
     $('.temp-right').css('z-index', '101')
     $('.temp-right').css('height', '100vh')
@@ -63,8 +65,8 @@ const loginForm = (e) => {
 
 
     salesLogo = document.createElement("img")
-    salesLogo.src = "icon.png";
-    salesLogo.src = chrome.runtime.getURL("lib/meta-logo.png");
+    // salesLogo.src = "icon.png";
+    // salesLogo.src = chrome.runtime.getURL("lib/meta-logo.png");
     salesLogo.style.display = 'block'
     salesLogo.style.marginLeft = '20px'
     salesLogo.style.padding = '0px 25px 25px'
@@ -82,7 +84,7 @@ const loginForm = (e) => {
 
     let crawlingUserIdSpanStep01 = document.createElement('span')
     crawlingUserIdSpanStep01.innerHTML = 'email'
-    crawlingUserIdSpanStep01.style.color = '#fff'
+    //crawlingUserIdSpanStep01.style.color = '#fff'
     crawlingUserIdSpanStep01.style.fontSize = '13px'
     crawlingUserIdSpanStep01.style.marginBottom = '5px'
     crawlingUserIdSpanStep01.style.fontWeight = '600'
@@ -111,7 +113,7 @@ const loginForm = (e) => {
 
     let crawlinguserPasswordSpanStep01 = document.createElement('span')
     crawlinguserPasswordSpanStep01.innerHTML = 'Password'
-    crawlinguserPasswordSpanStep01.style.color = '#fff'
+    //crawlinguserPasswordSpanStep01.style.color = '#fff'
     crawlinguserPasswordSpanStep01.style.fontSize = '13px'
     crawlinguserPasswordSpanStep01.style.marginBottom = '5px'
     crawlinguserPasswordSpanStep01.style.fontWeight = '600'
@@ -149,11 +151,12 @@ const loginForm = (e) => {
     submitBtnStep01.innerHTML = '로그인'
     submitBtnStep01.style.border = '#240086 1px solid'
     submitBtnStep01.style.color = '#FFF'
-    submitBtnStep01.style.backgroundColor = '#240086'
+    submitBtnStep01.style.backgroundColor = 'rgb(31 41 55)'
     submitBtnStep01.style.boxShadow = 'none'
     submitBtnStep01.style.width = '90%'
     submitBtnStep01.style.marginTop = '25px'
     submitBtnStep01.style.cursor = 'pointer'
+    submitBtnStep01.style.borderRadius = '0.75rem'
     stepform.append(submitBtnStep01)
 
     
@@ -176,7 +179,8 @@ const handler = (e) => {
         credentials: "include"
     })
     .then(res => res.json())
-    .then(SUC => SUC.type=="SUCCESS"? Step02DivCalling(SUC) : alert('인증실패하였습니다.'));
+    .then(SUC => SUC.type=="SUCCESS"? Step02DivCalling(SUC) : alert('인증실패하였습니다.'))
+    
     
 }
 
@@ -190,3 +194,11 @@ const Step02DivCalling = (res) => {
 
 document.querySelector('#metaonbtn01').removeEventListener("click",loginForm)
 document.querySelector('#metaonbtn01').addEventListener("click",loginForm)
+
+  
+  
+  
+  // contentscript.js
+  chrome.runtime.sendMessage({
+    message: 1
+  });

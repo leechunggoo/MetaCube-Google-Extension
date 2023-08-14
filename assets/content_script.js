@@ -1,3 +1,4 @@
+IP_CONFIG = 'http://localhost:8080'
 console.log('metacube 에서 호출하는 content script')
 
 function crawlingpage(res){
@@ -12,7 +13,6 @@ function crawlingpage(res){
     // step 01
     let UserName = document.createElement('span')
     UserName.innerHTML =res.body.member.username + ' 님 반갑습니다.'
-    UserName.style.color = '#fff'
     UserName.style.fontSize = '20px'
     UserName.style.marginBottom = '7px'
     UserName.style.fontWeight = '600'
@@ -31,7 +31,6 @@ function crawlingpage(res){
     //타이틀
     let crawlingtitleSpan = document.createElement('span')
     crawlingtitleSpan.innerHTML = '도메인 타이틀'
-    crawlingtitleSpan.style.color = '#fff'
     crawlingtitleSpan.style.fontSize = '12px'
     crawlingtitleSpan.style.marginBottom = '10px'
     crawlingtitleSpan.style.fontWeight = '200'
@@ -49,9 +48,8 @@ function crawlingpage(res){
     crawlingTITELinput.style.marginBottom = '10px'
     crawlingTITELinput.style.backgroundColor = '#c4ccdd'
     crawlingTITELinput.style.fontWeight = '500'
-    crawlingTITELinput.style.fontSize = '70%'
+    crawlingTITELinput.style.fontSize = '13px'
     crawlingTITELinput.style.display = 'block'
-    crawlingTITELinput.style.fontSize = '100%'
     crawlingTITELinput.style.outline = 'none'
     crawlingTITELinput.style.width = '80%'
     crawlingTITELinput.style.placeHolder = 'ex.. 74'
@@ -65,7 +63,6 @@ function crawlingpage(res){
     //URL
     let crawlingURLspanStep02 = document.createElement('span')
     crawlingURLspanStep02.innerHTML = '도메인';
-    crawlingURLspanStep02.style.color = '#fff'
     crawlingURLspanStep02.style.fontSize = '12px'
     crawlingURLspanStep02.style.marginBottom = '10px'
     crawlingURLspanStep02.style.fontWeight = '200'
@@ -83,9 +80,8 @@ function crawlingpage(res){
     crawlingURLinput.style.marginBottom = '10px'
     crawlingURLinput.style.backgroundColor = '#c4ccdd'
     crawlingURLinput.style.fontWeight = '500'
-    crawlingURLinput.style.fontSize = '75%'
+    crawlingURLinput.style.fontSize = '13px'
     crawlingURLinput.style.display = 'block'
-    crawlingURLinput.style.fontSize = '100%'
     crawlingURLinput.style.outline = 'none'
     crawlingURLinput.style.width = '80%'
     crawlingURLinput.style.placeHolder = 'ex.. 74'
@@ -100,7 +96,6 @@ function crawlingpage(res){
     //수집대상
     let crawlingTARGETspan = document.createElement('span')
     crawlingTARGETspan.innerHTML = '수집대상';
-    crawlingTARGETspan.style.color = '#fff'
     crawlingTARGETspan.style.fontSize = '12px'
     crawlingTARGETspan.style.marginBottom = '10px'
     crawlingTARGETspan.style.fontWeight = '200'
@@ -118,9 +113,8 @@ function crawlingpage(res){
     crawlingTARGETinput.style.color = '#000'
     crawlingTARGETinput.style.backgroundColor = '#c4ccdd'
     crawlingTARGETinput.style.fontWeight = '500'
-    crawlingTARGETinput.style.fontSize = '75%'
+    crawlingTARGETinput.style.fontSize = '11px'
     crawlingTARGETinput.style.display = 'block'
-    crawlingTARGETinput.style.fontSize = '100%'
     crawlingTARGETinput.style.outline = 'none'
     crawlingTARGETinput.style.width = '80%'
     crawlingTARGETinput.style.placeHolder = 'ex.. 74'
@@ -134,7 +128,6 @@ function crawlingpage(res){
     //설명
     let crawlingPLANspan = document.createElement('span')
     crawlingPLANspan.innerHTML = '설명';
-    crawlingPLANspan.style.color = '#fff'
     crawlingPLANspan.style.fontSize = '12px'
     crawlingPLANspan.style.marginBottom = '10px'
     crawlingPLANspan.style.fontWeight = '200'
@@ -152,12 +145,12 @@ function crawlingpage(res){
     crawlingPLANinput.style.color = '#000'
     crawlingPLANinput.style.backgroundColor = '#c4ccdd'
     crawlingPLANinput.style.fontWeight = '500'
-    crawlingPLANinput.style.fontSize = '85%'
+    crawlingPLANinput.style.fontSize = '12px'
     crawlingPLANinput.style.display = 'block'
-    crawlingPLANinput.style.fontSize = '100%'
     crawlingPLANinput.style.outline = 'none'
     crawlingPLANinput.style.width = '80%'
     crawlingPLANinput.style.placeHolder = '설명란을 입력하세요.'
+
     rows04.append(crawlingPLANinput)
     
     let rows05 = document.createElement('div')
@@ -168,7 +161,6 @@ function crawlingpage(res){
     //카테고리
     let crawlingCATEGORYspan = document.createElement('span')
     crawlingCATEGORYspan.innerHTML = '유형';
-    crawlingCATEGORYspan.style.color = '#fff'
     crawlingCATEGORYspan.style.fontSize = '12px'
     crawlingCATEGORYspan.style.marginBottom = '10px'
     crawlingCATEGORYspan.style.fontWeight = '200'
@@ -176,23 +168,28 @@ function crawlingpage(res){
     crawlingCATEGORYspan.style.width ='20%'
     crawlingCATEGORYspan.style.textAlign ='center'
     rows05.append(crawlingCATEGORYspan)
-    let crawlingCATEGORYinput = document.createElement('input')
-    crawlingCATEGORYinput.setAttribute('id','crawlingCATEGORYinput')
-    crawlingCATEGORYinput.style.padding = '0 7px'
-    crawlingCATEGORYinput.style.height = '32px'
-    crawlingCATEGORYinput.style.border = '#c4ccdd 1px solid'
-    crawlingCATEGORYinput.style.borderRadius = '0'
-    crawlingCATEGORYinput.style.marginBottom = '10px'
-    crawlingCATEGORYinput.style.color = '#000'
-    crawlingCATEGORYinput.style.backgroundColor = '#c4ccdd'
-    crawlingCATEGORYinput.style.fontWeight = '500'
-    crawlingCATEGORYinput.style.fontSize = '90%'
-    crawlingCATEGORYinput.style.display = 'block'
-    crawlingCATEGORYinput.style.fontSize = '100%'
-    crawlingCATEGORYinput.style.outline = 'none'
-    crawlingCATEGORYinput.style.width = '80%'
-    crawlingCATEGORYinput.style.placeHolder = '유형을 입력하세요.'
-    rows05.append(crawlingCATEGORYinput)
+    let crawlingCATEGORYselect = document.createElement('select')
+    crawlingCATEGORYselect.setAttribute('id','crawlingCATEGORYinput')
+    crawlingCATEGORYselect.append(new Option('뉴스','news'))
+    crawlingCATEGORYselect.append(new Option('고객','client'))
+    crawlingCATEGORYselect.append(new Option('자회사','mycompany'))
+    crawlingCATEGORYselect.append(new Option('경재사','rivalcompany'))
+    crawlingCATEGORYselect.append(new Option('사업','Business'))
+    crawlingCATEGORYselect.append(new Option('쇼핑','Shopping'))
+    crawlingCATEGORYselect.style.textAlign='center'
+    crawlingCATEGORYselect.style.padding = '0 7px'
+    crawlingCATEGORYselect.style.height = '32px'
+    crawlingCATEGORYselect.style.border = '#c4ccdd 1px solid'
+    crawlingCATEGORYselect.style.marginBottom = '10px'
+    crawlingCATEGORYselect.style.borderRadius = '0'
+    crawlingCATEGORYselect.style.color = '#000'
+    crawlingCATEGORYselect.style.backgroundColor = '#c4ccdd'
+    crawlingCATEGORYselect.style.fontWeight = '500'
+    crawlingCATEGORYselect.style.fontSize = '15px'
+    crawlingCATEGORYselect.style.display = 'block'
+    crawlingCATEGORYselect.style.outline = 'none'
+    crawlingCATEGORYselect.style.width = '80%'
+    rows05.append(crawlingCATEGORYselect)
 
     let rows06 = document.createElement('div')
     rows06.style.display='flex';
@@ -200,18 +197,16 @@ function crawlingpage(res){
     row01.append(rows06)
 
     //XPATH정보
-    let crawlingXPATHbutton = document.createElement('button')
-    crawlingXPATHbutton.setAttribute('type','button');
-    crawlingXPATHbutton.setAttribute('id','crawlingXPATHbutton');
-    crawlingXPATHbutton.innerHTML = 'XPATH'
-    crawlingXPATHbutton.style.color = '#fff'
-    crawlingXPATHbutton.style.fontSize = '12px'
-    crawlingXPATHbutton.style.marginBottom = '10px'
-    crawlingXPATHbutton.style.fontWeight = '200'
-    crawlingXPATHbutton.style.display = 'block'
-    crawlingXPATHbutton.style.width ='20%'
-    crawlingXPATHbutton.style.textAlign ='center'
-    rows06.append(crawlingXPATHbutton)
+    let crawlingXPATHspan = document.createElement('span')
+    crawlingXPATHspan.setAttribute('id','crawlingXPATHspan');
+    crawlingXPATHspan.innerHTML = 'XPATH'
+    crawlingXPATHspan.style.fontSize = '12px'
+    crawlingXPATHspan.style.marginBottom = '10px'
+    crawlingXPATHspan.style.fontWeight = '200'
+    crawlingXPATHspan.style.display = 'block'
+    crawlingXPATHspan.style.width ='20%'
+    crawlingXPATHspan.style.textAlign ='center'
+    rows06.append(crawlingXPATHspan)
     let crawlingXPATHinput = document.createElement('input')
     crawlingXPATHinput.setAttribute('id','crawlingXPATHinput')
     crawlingXPATHinput.style.padding = '0 7px'
@@ -222,9 +217,8 @@ function crawlingpage(res){
     crawlingXPATHinput.style.color = '#000'
     crawlingXPATHinput.style.backgroundColor = '#c4ccdd'
     crawlingXPATHinput.style.fontWeight = '500'
-    crawlingXPATHinput.style.fontSize = '75%'
+    crawlingXPATHinput.style.fontSize = '11px'
     crawlingXPATHinput.style.display = 'block'
-    crawlingXPATHinput.style.fontSize = '100%'
     crawlingXPATHinput.style.outline = 'none'
     crawlingXPATHinput.style.width = '80%'
     crawlingXPATHinput.style.placeHolder = 'ex.. 74'
@@ -235,56 +229,74 @@ function crawlingpage(res){
     rows07.style.width='100%'
     row01.append(rows07)
 
-    let crawlingNAMEspan = document.createElement('selectbox')
-    crawlingNAMEspan.innerText=''
-    crawlingNAMEspan.style.display='flex';
-    crawlingNAMEspan.style.width='100%'
-    rows07.append(crawlingNAMEspan)
-    
-    
-    
+    // let crawlingNAMEspan = document.createElement('selectbox')
+    // crawlingNAMEspan.innerText=''
+    // crawlingNAMEspan.style.display='flex';
+    // crawlingNAMEspan.style.width='100%'
+    // rows07.append(crawlingNAMEspan)
+        
     let rows08 = document.createElement('div')
     rows08.style.display='flex';
     rows08.style.width='100%'
     row01.append(rows08)
-    
-    //명칭
-    let crawlingNAMEinput = document.createElement('input')
-    crawlingNAMEinput.setAttribute('id','crawlingNAMEinput')
-    crawlingNAMEinput.style.margin = '5px 5px'
-    crawlingNAMEinput.style.padding = '0 7px'
-    crawlingNAMEinput.style.height = '32px'
-    crawlingNAMEinput.style.border = '#c4ccdd 1px solid'
-    crawlingNAMEinput.style.borderRadius = '0'
-    crawlingNAMEinput.style.color = '#000'
-    crawlingNAMEinput.style.backgroundColor = '#c4ccdd'
-    crawlingNAMEinput.style.fontWeight = '500'
-    crawlingNAMEinput.style.fontSize = '75%'
-    crawlingNAMEinput.style.display = 'block'
-    crawlingNAMEinput.style.fontSize = '70%'
-    crawlingNAMEinput.style.outline = 'none'
-    crawlingNAMEinput.style.width = '90%'
-    crawlingNAMEinput.setAttribute('placeHolder','ex) 제목 or 내용')
-    rows08.append(crawlingNAMEinput)
 
-    //명칭
-    let crawlingMAPPINGNAMEinput = document.createElement('input')
-    crawlingMAPPINGNAMEinput.setAttribute('id','crawlingMAPPINGNAMEinput')
-    crawlingMAPPINGNAMEinput.style.margin = '5px 5px'
-    crawlingMAPPINGNAMEinput.style.padding = '0 7px'
-    crawlingMAPPINGNAMEinput.style.height = '32px'
-    crawlingMAPPINGNAMEinput.style.border = '#c4ccdd 1px solid'
-    crawlingMAPPINGNAMEinput.style.borderRadius = '0'
-    crawlingMAPPINGNAMEinput.style.color = '#000'
-    crawlingMAPPINGNAMEinput.style.backgroundColor = '#c4ccdd'
-    crawlingMAPPINGNAMEinput.style.fontWeight = '500'
-    crawlingMAPPINGNAMEinput.style.fontSize = '75%'
-    crawlingMAPPINGNAMEinput.style.display = 'block'
-    crawlingMAPPINGNAMEinput.style.fontSize = '70%'
-    crawlingMAPPINGNAMEinput.style.outline = 'none'
-    crawlingMAPPINGNAMEinput.style.width = '90%'
-    crawlingMAPPINGNAMEinput.setAttribute('placeHolder','ex) title or content')
-    rows08.append(crawlingMAPPINGNAMEinput)
+    //크롤링데이터 논리명(한글)
+
+    //target 대상유형
+    let crawlingNAMEspan = document.createElement('span')
+    crawlingNAMEspan.innerHTML = '대상 유형';
+    crawlingNAMEspan.style.fontSize = '12px'
+    crawlingNAMEspan.style.marginBottom = '10px'
+    crawlingNAMEspan.style.fontWeight = '200'
+    crawlingNAMEspan.style.display = 'block'
+    crawlingNAMEspan.style.width ='20%'
+    crawlingNAMEspan.style.textAlign ='center'
+    rows08.append(crawlingNAMEspan)
+
+    let crawlingNAMEselect = document.createElement('select')
+    crawlingNAMEselect.setAttribute('id','crawlingNAMEselect')
+    crawlingNAMEselect.append(new Option('선택'))
+    crawlingNAMEselect.append(new Option('제목','title'))
+    crawlingNAMEselect.append(new Option('내용','content'))
+    crawlingNAMEselect.append(new Option('날짜','date'))
+    crawlingNAMEselect.style.textAlign='center'
+    crawlingNAMEselect.style.padding = '0 7px'
+    crawlingNAMEselect.style.height = '32px'
+    crawlingNAMEselect.style.border = '#c4ccdd 1px solid'
+    crawlingNAMEselect.style.marginBottom = '10px'
+    crawlingNAMEselect.style.borderRadius = '0'
+    crawlingNAMEselect.style.color = '#000'
+    crawlingNAMEselect.style.backgroundColor = '#c4ccdd'
+    crawlingNAMEselect.style.fontWeight = '500'
+    crawlingNAMEselect.style.fontSize = '15px'
+    crawlingNAMEselect.style.display = 'block'
+    crawlingNAMEselect.style.outline = 'none'
+    crawlingNAMEselect.style.width = '80%'
+
+    rows08.append(crawlingNAMEselect)
+
+    // //크롤링데이터 물리명
+    // let crawlingMAPPINGNAMEselect = document.createElement('select')
+    // crawlingMAPPINGNAMEselect.setAttribute('id','crawlingMAPPINGNAMEselect')
+    // crawlingMAPPINGNAMEselect.append(new Option('선택'))
+    // crawlingMAPPINGNAMEselect.append(new Option('title'))
+    // crawlingMAPPINGNAMEselect.append(new Option('content'))
+    // crawlingMAPPINGNAMEselect.style.textAlign='center'
+    // crawlingMAPPINGNAMEselect.style.margin = '5px 5px'
+    // crawlingMAPPINGNAMEselect.style.padding = '0 7px'
+    // crawlingMAPPINGNAMEselect.style.height = '32px'
+    // crawlingMAPPINGNAMEselect.style.border = '#c4ccdd 1px solid'
+    // crawlingMAPPINGNAMEselect.style.borderRadius = '0'
+    // crawlingMAPPINGNAMEselect.style.color = '#000'
+    // crawlingMAPPINGNAMEselect.style.backgroundColor = '#c4ccdd'
+    // crawlingMAPPINGNAMEselect.style.fontWeight = '500'
+    // crawlingMAPPINGNAMEselect.style.fontSize = '75%'
+    // crawlingMAPPINGNAMEselect.style.display = 'block'
+    // crawlingMAPPINGNAMEselect.style.fontSize = '70%'
+    // crawlingMAPPINGNAMEselect.style.outline = 'none'
+    // crawlingMAPPINGNAMEselect.style.width = '90%'
+    // crawlingMAPPINGNAMEselect.setAttribute('placeHolder','ex) title or content')
+    // rows08.append(crawlingMAPPINGNAMEselect)
 
     //XPATH 경로 저장요청
     let rows09 = document.createElement('div')
@@ -293,23 +305,28 @@ function crawlingpage(res){
 
     let crawlingFINDbutton = document.createElement('button')
     crawlingFINDbutton.setAttribute('id','crawlingFINDbutton')
-    crawlingFINDbutton.style.lineHeight = '1.4'
     crawlingFINDbutton.style.fontWeight = '400'
-    crawlingFINDbutton.style.fontSize = '25px'
+    crawlingFINDbutton.style.fontSize = '13px'
     crawlingFINDbutton.innerHTML = '보내기'
     crawlingFINDbutton.style.border = '#240086 1px solid'
     crawlingFINDbutton.style.color = '#FFF'
-    crawlingFINDbutton.style.backgroundColor = '#240086'
+    crawlingFINDbutton.style.backgroundColor = 'rgb(31 41 55)'
     crawlingFINDbutton.style.width = '100%'
     crawlingFINDbutton.style.height = '30px'
     crawlingFINDbutton.style.marginTop = '25px'
     crawlingFINDbutton.style.cursor = 'pointer'
+    crawlingFINDbutton.style.borderRadius = '0.75rem'
     rows09.append(crawlingFINDbutton)
     //mapping정보
 
-    
+    let title = document.querySelector('meta[property="og:site_name"]')
     //제목입력
-    let title = document.querySelector('title').textContent;
+    if(title){
+        title = document.querySelector('meta[property="og:site_name"]').getAttribute('content');
+    }else{
+        title = "";
+    }
+    
     crawlingTITELinput.value=title
     //URL
     let URL = document.location.href
@@ -330,56 +347,95 @@ function crawlingpage(res){
 
     let leftcrtag = document.querySelector('.temp-left')
     let clickFlag = false;
-    let targetBackgroundColor;
+    let targetOriginBackColor;
+    let elementForMouseOver;
+    let tempXpath;
+    let tableinsertdata; //xpath 값 //*[@id="main"]/article/div/p[5]
 
     leftcrtag.addEventListener('mouseover',(e)=>{
+        
+        tempXpath = '';
+        tempXpath = getElementTarget(e.target) // 전체
+
+        let xpathinfo = generateXPath(e.target);
+        tableinsertdata = xpathinfo.replace(/\s?\[1\]\s?/g, '');
+        
+        clickFlag = false;
+        // element : <span style="color: rgb(255, 255, 255); ">[수집대상의 innerHTML]</span>
+        let element = document.evaluate(tempXpath, document,null,
+                XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        
+        elementForMouseOver = element;
+        targetOriginBackColor = element.style.backgroundColor; //기존의 backgroundcolor;
+        
+        //mouseover 영역의 backcolor 변경
+        getFocusElement(element);
     
-        
-        let tempXpath = getElementTarget(e.target) //ex)../html/body/crtag[1]/div[2]/div[6]
-        //ex) ..<span style="color: rgb(255, 255, 255); "> 수집대상</span>
-        
-        //확장프로그램 영역 밖에서만 event 넣기
-        if(tempXpath.toString().indexOf('crtag[1]') > 0){
-            
-            let element = document.evaluate(tempXpath, document,null,
-                  XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-            // console.log(element)
-            // console.log(tempXpath)
+    })
 
-            targetBackgroundColor = element.style.backgroundColor; //기존의 backgroundcolor;
-            
-            //mouseover 영역의 backcolor 변경
-            getFocusElement(element);
-            
-                //backcolor 초기화
-                element.addEventListener('mouseout',(e)=>{
-                    console.log(element)
-                    element.style.backgroundColor = targetBackgroundColor;
-                })
-                
-                //마우스 우클릭시
-                element.addEventListener('mousedown',(e)=>{
-                    
-                    e.preventDefault()
-                    e.stopPropagation()
-                    if(e.button == 2){
-                        let Originalcolor = e.target.backgroundColor
-                        document.querySelector('#crawlingXPATHinput').value = getElementTarget(e.target);
-                        getFocusElement(e.target)
-                        
-                    }
-                
-                })
-            
-
-
+    leftcrtag.addEventListener('mouseout',(e)=>{
+        if(!clickFlag){
+            getBackgroundColorOfElement(elementForMouseOver,targetOriginBackColor)
         }
+    })
 
+    leftcrtag.addEventListener('mousedown',(e)=>{
+        
+        //mouse 우클릭시 이벤트 추가
+        if(e.button == 2){
+            console.log(e.target)
+            e.preventDefault();
+            e.stopPropagation();
+            clickFlag = true
+            getFocusElement(e.target)
+            console.log({e:e.target})
+            document.querySelector('#crawlingXPATHinput').value = tempXpath;
+            document.querySelector('#crawlingTARGETinput').value = e.target.outerHTML
+        }
+    })
+
+    
+
+    //더블클릭 이벤트 비활설화
+    leftcrtag.addEventListener('dblclick', function (event) {
+        return false;
+    })
+
+    //
+    document.querySelector('#crawlingFINDbutton').addEventListener('click',(e)=>{
+
+        let titleinput = document.getElementById("crawlingTITELinput").value;         //도메인 타이틀
+        let urlinput = document.getElementById("crawlingURLinput").value;             //도메인
+        let targetinput = document.getElementById("crawlingTARGETinput").value;       //수집대상
+        let planinput = document.getElementById("crawlingPLANinput").value;           //설명
+        let categoryinput = document.getElementById("crawlingCATEGORYinput").value;   //유형
+        let everyxpath = document.getElementById("crawlingXPATHinput").value;         //전체xpath(html/body/div/div/h1.....)
+        let nameselect = document.getElementById("crawlingNAMEselect").value;         //대상 유형
+        let targetxpath = tableinsertdata; // //*[@id="carousel"]/div/div/div
+    
+        console.log(targetxpath)
+
+        if(!everyxpath && !targetinput) {alert('수집대상,xpath 를 입력하세요'); return;}
+        if(targetinput=='선택') {alert('대상유형을 선택하세요'); return;}
+        
+        fetch(IP_CONFIG+'/api/chrome/extention/insert',{
+            method:'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: "include",
+            body: JSON.stringify({title:titleinput?titleinput:"",
+                                url:urlinput,
+                                target:targetinput,
+                                plan:planinput,
+                                category:categoryinput,
+                                xpath:everyxpath,
+                                type:nameselect,
+                                targetxpath:targetxpath})
+        }).then(alert('저장성공'))
+            
     })
 
 
 }
-
 
 //수집대상 xpath경로 추출
 function getElementTarget(element){
@@ -425,5 +481,63 @@ function getFocusElement(element){
         console.log("배경색이 없습니다.");
     }
 
+}
+
+//mouseout시 backgoundColor 되돌리기
+function getBackgroundColorOfElement(element, color) {
+    element.style.backgroundColor = color;
+}
+
+function getElementByXpath(path) {
+    document.evaluate(path, document,null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+function Initialize(res){
+    crawlingpage(res)
+}
+
+//쿠키
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    }
+  }
+  
+
+  function getXPath(element) {
+    var xpath = '//';
+    //while (element) {
+      xpath += element.tagName;
+      if (element.id) {
+        xpath += '[@id="' + element.id + '"]';
+      }
+      element = element.parentNode;
+    //}
+    return xpath;
+  }
+
+
+  function generateXPath(element) {
+    if (element.id !== "") {
+        return '//*[@id="' + element.id + '"]';
+    }
+    if (element === document.body) {
+        return '/html/' + element.tagName.toLowerCase();
+    }
+
+    var index = 1;
+    var siblings = element.parentNode.childNodes;
+    for (var i = 0; i < siblings.length; i++) {
+        var sibling = siblings[i];
+        if (sibling === element) {
+            return generateXPath(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + index + ']';
+        }
+        if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+            index++;
+        }
+    }
 }
 
