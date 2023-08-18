@@ -166,9 +166,6 @@ const loginForm = (e) => {
 
 }
 
-
-
-
 const handler = (e) => {
     e.preventDefault();
     const formdata = new FormData(stepform);
@@ -181,7 +178,6 @@ const handler = (e) => {
     .then(res => res.json())
     .then(SUC => SUC.type=="SUCCESS"? Step02DivCalling(SUC) : alert('인증실패하였습니다.'))
     
-    
 }
 
 //인증성공시 scraper_injection.js 호출부
@@ -191,11 +187,8 @@ const Step02DivCalling = (res) => {
 }
 
 
-
 document.querySelector('#metaonbtn01').removeEventListener("click",loginForm)
 document.querySelector('#metaonbtn01').addEventListener("click",loginForm)
-
-  
   
   
   // contentscript.js

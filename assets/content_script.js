@@ -9,7 +9,6 @@ function crawlingpage(res){
     divEl.style.margin='5px 5px 5px 5px'//!important;
     divEl.style.padding='0 0 0 0'//!important;
     
-
     // step 01
     let UserName = document.createElement('span')
     UserName.innerHTML =res.body.member.username + ' 님 반갑습니다.'
@@ -319,6 +318,7 @@ function crawlingpage(res){
     rows09.append(crawlingFINDbutton)
     //mapping정보
 
+
     let title = document.querySelector('meta[property="og:site_name"]')
     //제목입력
     if(title){
@@ -327,7 +327,7 @@ function crawlingpage(res){
         title = "";
     }
     
-    crawlingTITELinput.value=title
+    crawlingTITELinput.value = title
     //URL
     let URL = document.location.href
     crawlingURLinput.value=URL
@@ -350,15 +350,17 @@ function crawlingpage(res){
     let targetOriginBackColor;
     let elementForMouseOver;
     let tempXpath;
-    let tableinsertdata; //xpath 값 //*[@id="main"]/article/div/p[5]
+    let tableinsertdata; //xpath 값 
+    let successelement; //저장성공시 Eltarget
+    let successcolor; //저장성공시 backcolor복원
 
     leftcrtag.addEventListener('mouseover',(e)=>{
         
         tempXpath = '';
         tempXpath = getElementTarget(e.target) // 전체
 
-        let xpathinfo = generateXPath(e.target);
-        tableinsertdata = xpathinfo.replace(/\s?\[1\]\s?/g, '');
+        let xpathinfo = generateXPath(e.target); // //*[@id="main"]/article/div/p[5]
+        tableinsertdata = xpathinfo.replace(/\s?\[1\]\s?/g, ''); // [1]
         
         clickFlag = false;
         // element : <span style="color: rgb(255, 255, 255); ">[수집대상의 innerHTML]</span>
@@ -380,22 +382,29 @@ function crawlingpage(res){
     })
 
     leftcrtag.addEventListener('mousedown',(e)=>{
-        
+
         //mouse 우클릭시 이벤트 추가
         if(e.button == 2){
-            console.log(e.target)
+            successcolor = targetOriginBackColor
+            successelement = e.target
+            let clo = e.target.cloneNode(false)
+            clo.value = "Desired Value"
+            
+            console.log(e.target.cloneNode(false))
             e.preventDefault();
             e.stopPropagation();
             clickFlag = true
             getFocusElement(e.target)
-            console.log({e:e.target})
+            
             document.querySelector('#crawlingXPATHinput').value = tempXpath;
-            document.querySelector('#crawlingTARGETinput').value = e.target.outerHTML
+            document.querySelector('#crawlingTARGETinput').value = clo.outerHTML;
+
+            
+            
         }
     })
 
     
-
     //더블클릭 이벤트 비활설화
     leftcrtag.addEventListener('dblclick', function (event) {
         return false;
@@ -413,7 +422,6 @@ function crawlingpage(res){
         let nameselect = document.getElementById("crawlingNAMEselect").value;         //대상 유형
         let targetxpath = tableinsertdata; // //*[@id="carousel"]/div/div/div
     
-        console.log(targetxpath)
 
         if(!everyxpath && !targetinput) {alert('수집대상,xpath 를 입력하세요'); return;}
         if(targetinput=='선택') {alert('대상유형을 선택하세요'); return;}
@@ -421,7 +429,7 @@ function crawlingpage(res){
         fetch(IP_CONFIG+'/api/chrome/extention/insert',{
             method:'POST',
             headers: {'Content-Type': 'application/json'},
-            credentials: "include",
+            credentials: "include", // 인증정보를 포함하여 요청보내는설정 (쿠키,http인증 정보)
             body: JSON.stringify({title:titleinput?titleinput:"",
                                 url:urlinput,
                                 target:targetinput,
@@ -430,10 +438,18 @@ function crawlingpage(res){
                                 xpath:everyxpath,
                                 type:nameselect,
                                 targetxpath:targetxpath})
-        }).then(alert('저장성공'))
-            
-    })
+        }).then(res=>{
+            if(res.ok){
+                getBackgroundColorOfElement(successelement,successcolor)
+                targetinput ="";
+                planinput ="";
+                everyxpath ="";
+            }else{
+                alert('저장실패')
+            }
+        })
 
+    })
 
 }
 
@@ -469,6 +485,7 @@ function getElementTarget(element){
         paths.splice(0, 0, tagName + pathIndex);
     }
     return paths.length ? "/" + paths.join("/") : null;
+    //html/body/div/div
 
 }
 
@@ -480,11 +497,11 @@ function getFocusElement(element){
     } catch (e) {
         console.log("배경색이 없습니다.");
     }
-
 }
 
 //mouseout시 backgoundColor 되돌리기
 function getBackgroundColorOfElement(element, color) {
+
     element.style.backgroundColor = color;
 }
 
@@ -493,34 +510,7 @@ function getElementByXpath(path) {
         XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
 
-function Initialize(res){
-    crawlingpage(res)
-}
-
-//쿠키
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) {
-      return parts.pop().split(";").shift();
-    }
-  }
-  
-
-  function getXPath(element) {
-    var xpath = '//';
-    //while (element) {
-      xpath += element.tagName;
-      if (element.id) {
-        xpath += '[@id="' + element.id + '"]';
-      }
-      element = element.parentNode;
-    //}
-    return xpath;
-  }
-
-
-  function generateXPath(element) {
+function generateXPath(element) {
     if (element.id !== "") {
         return '//*[@id="' + element.id + '"]';
     }
