@@ -358,9 +358,6 @@ function crawlingpage(res){
         
         tempXpath = '';
         tempXpath = getElementTarget(e.target) // 전체
-
-        let xpathinfo = generateXPath(e.target); // //*[@id="main"]/article/div/p[5]
-        tableinsertdata = xpathinfo.replace(/\s?\[1\]\s?/g, ''); // [1]
         
         clickFlag = false;
         // element : <span style="color: rgb(255, 255, 255); ">[수집대상의 innerHTML]</span>
@@ -372,6 +369,8 @@ function crawlingpage(res){
         
         //mouseover 영역의 backcolor 변경
         getFocusElement(element);
+
+    
     
     })
 
@@ -385,12 +384,16 @@ function crawlingpage(res){
 
         //mouse 우클릭시 이벤트 추가
         if(e.button == 2){
+
+            
+            let xpathinfo = generateXPath(e.target); // //*[@id="main"]/article/div/p[5]
+            tableinsertdata = xpathinfo.replace(/\s?\[1\]\s?/g, ''); // [1]
+
             successcolor = targetOriginBackColor
             successelement = e.target
             let clo = e.target.cloneNode(false)
             clo.value = "Desired Value"
             
-            console.log(e.target.cloneNode(false))
             e.preventDefault();
             e.stopPropagation();
             clickFlag = true
@@ -438,16 +441,18 @@ function crawlingpage(res){
                                 xpath:everyxpath,
                                 type:nameselect,
                                 targetxpath:targetxpath})
-        }).then(res=>{
-            if(res.ok){
+        }).then(res=>res.json()
+        ).then(res=>{        
+            if(res.type=="SUCCESS"){
                 getBackgroundColorOfElement(successelement,successcolor)
                 targetinput ="";
                 planinput ="";
                 everyxpath ="";
+                return res.message.default;
             }else{
                 alert('저장실패')
             }
-        })
+        }).then(res2=>console.log(res2))
 
     })
 
@@ -511,6 +516,7 @@ function getElementByXpath(path) {
 }
 
 function generateXPath(element) {
+
     if (element.id !== "") {
         return '//*[@id="' + element.id + '"]';
     }
@@ -530,4 +536,3 @@ function generateXPath(element) {
         }
     }
 }
-
